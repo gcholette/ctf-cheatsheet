@@ -1,8 +1,13 @@
 # CTF Reference
 
+### Native tools
 - [Lin Enum](https://github.com/rebootuser/LinEnum)
-- [Crypto Chef](https://gchq.github.io/CyberChef/)
 - [RustScan](https://github.com/RustScan/RustScan)
+- [Stegsolve](https://github.com/zardus/ctf-tools/tree/master/stegsolve)
+
+### Online tools
+- [Crypto Chef](https://gchq.github.io/CyberChef/)
+ 
 
 ### Sudo basic escalation
 ```
