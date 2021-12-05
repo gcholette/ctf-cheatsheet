@@ -18,6 +18,9 @@ nmap -sC -A -T4 <ip>
 ```shell
 ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ```
+```shell
+ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
+```
 
 ### gobuster
 ```shell
