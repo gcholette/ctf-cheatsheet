@@ -92,10 +92,14 @@ perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
 
 ```
 pip install git-dumper
-git dumper https://some-url/.git ./meow
+git-dumper https://some-url/.git ./meow
 ls ./meow
 ```
 
+### Adding to PATH
+```
+PATH=$PATH:/some/path
+```
 
 ### Metasploit basic usage
 ```shell
