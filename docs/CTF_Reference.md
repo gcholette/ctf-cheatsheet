@@ -227,6 +227,7 @@ int rand(void)
 #### Registers
 ```
 RBP: bottom of the current stack frame
+RAX: 64bit version of EAX(32bit), and AX(16bit)
 ``` 
 
 #### functions
