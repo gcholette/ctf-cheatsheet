@@ -115,7 +115,7 @@ run
 ### Basic Python shell
 ```
 import os
-os.system("/bin/bash")
+os.system("/bin/bash")break *0x000055555555539c
 ```
 
 ### Basic banner grabbing (Python)
@@ -188,4 +188,53 @@ for user in users:
     #...
     
 # 546d467562334a356558493d
+```
+
+## Reverse
+
+Use ghidra to reverse the code to C
+
+```
+file some-executable
+checksec --file=some-executable
+strace ./some-executable
+rtrace ./some-executable
+```
+
+### GDB basics
+```
+gdb some-executable
+(gdb) info break
+(gdb) info registers
+(gdb) disassemble <fn-name>
+(gdb) break *0x000055555555539c
+(gdb) run
+(gdb) stepi
+(gdb) continue
+```
+
+### C Stuff
+```
+// time_t time(time_t *second) returns epoch in seconds
+time_t tVar;
+tVar = time((time_t *)0x0); // argument is NULL
+
+void srand(unsigned int seed) // sets a seed for rand() to use
+int rand(void)
+```
+
+### Assembly stuff
+#### Registers
+```
+RBP: bottom of the current stack frame
+``` 
+
+#### functions
+
+```
+LEA accepts a standard memory addressing operand, but does nothing more than store the calculated memory offset in the specified register, which may be any general purpose register.
+```
+```
+MOV dest_reg source_reg
+MOV eax, 0x0
 ```
