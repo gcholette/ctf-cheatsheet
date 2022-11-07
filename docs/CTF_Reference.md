@@ -125,7 +125,7 @@ run
 ### Basic Python shell
 ```
 import os
-os.system("/bin/bash")break *0x000055555555539c
+os.system("/bin/bash")
 ```
 
 ### Basic banner grabbing (Python)
