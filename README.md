@@ -94,6 +94,17 @@ sudo -u theuser <app>
 perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
 ```
 
+## Pivoting enum
+
+```
+arp -a                 # arp cache
+cat /etc/hosts         # look at hosts file
+cat /etc/resolv.conf   # linux local dns
+nmcli dev show         # 
+ipconfig /all          # local dns on windows
+
+```
+
 ## Cryptography
 
 - [Crypto Chef](https://gchq.github.io/CyberChef/)
