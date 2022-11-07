@@ -99,15 +99,17 @@ sudo -u theuser <app>
 perl -e 'use POSIX (setuid); POSIX::setuid(0); exec "/bin/bash";'
 ```
 
-## Pivoting enum
+## Pivoting
+- [FoxyProxy extension](https://addons.mozilla.org/en-GB/firefox/addon/foxyproxy-basic/)
+- [Proxychains](https://github.com/haad/proxychains)
 
+### Enum
 ```
 arp -a                 # arp cache
 cat /etc/hosts         # look at hosts file
 cat /etc/resolv.conf   # linux local dns
 nmcli dev show         # 
 ipconfig /all          # local dns on windows
-
 ```
 
 ## Cryptography
