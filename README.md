@@ -51,6 +51,11 @@ s.connect(("10.198.73.23", 23))
 print s.recv(1024)
 ```
 
+### ICMP scan
+```
+for i in {1..255}; do (ping -c 1 192.168.1.${i} | grep "bytes from" &); done
+```
+
 ## Initial access
 
 ### nc reverse shell
