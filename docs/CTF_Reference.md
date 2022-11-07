@@ -101,6 +101,16 @@ ls ./meow
 PATH=$PATH:/some/path
 ```
 
+### ssh with private key
+```
+ssh -i some_id_rsa <usr>@<ip>
+```
+
+### get headers with wget
+```
+wget -S some://url
+```
+
 ### Metasploit basic usage
 ```shell
 msfconsole
