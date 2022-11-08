@@ -135,7 +135,9 @@ strace ./some-executable
 rtrace ./some-executable
 ```
 
-### GDB basics
+### GDB
+- [gdb-peda](https://github.com/longld/peda)
+
 ```
 gdb some-executable
 (gdb) info break
@@ -145,6 +147,14 @@ gdb some-executable
 (gdb) run
 (gdb) stepi
 (gdb) continue
+
+# stripped workflow
+(gdb) run
+(gdb) info file                 # look for entry point
+(gdb) break *0x555555555080
+(gdb) run
+(gdb) x/1000i $rip              # list 1k lines from instruction pointer
+(gdb) x/1000i 0x5555555558dd    # list 1k lines from address
 ```
 
 ### C Stuff
