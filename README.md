@@ -92,6 +92,7 @@ os.system("/bin/bash")
 ```
 sudo -l
 sudo -u theuser <app>
+sudo --preserve-env=PATH /some/thing
 ```
 
 ### Perl escalation
