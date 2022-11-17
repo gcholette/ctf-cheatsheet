@@ -58,6 +58,8 @@ for i in {1..255}; do (ping -c 1 192.168.1.${i} | grep "bytes from" &); done
 
 ## Initial access
 
+- [:alien: Revshells](https://www.revshells.com/)
+
 ### nc reverse shell
 
 Listener
