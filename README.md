@@ -294,7 +294,6 @@ for user in users:
 ### Basic python socket
 
 ```python
-### basic python socket
 import socket
 import time
 
