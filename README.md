@@ -291,6 +291,9 @@ for user in users:
 # 546d467562334a356558493d
 ```
 
+### Basic python socket
+
+```python
 ### basic python socket
 import socket
 import time
@@ -309,4 +312,4 @@ def exploit(ip, port, x):
 
 for i in range(44, 80):
     exploit("x.x.x.x", 8080, i)
-
+```
