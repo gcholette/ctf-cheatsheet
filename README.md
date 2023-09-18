@@ -153,7 +153,8 @@ gdb some-executable
 (gdb) run
 (gdb) stepi
 (gdb) continue
-
+```
+```
 # stripped workflow
 (gdb) run
 (gdb) info file                 # look for entry point
@@ -161,6 +162,11 @@ gdb some-executable
 (gdb) run
 (gdb) x/1000i $rip              # list 1k lines from instruction pointer
 (gdb) x/1000i 0x5555555558dd    # list 1k lines from address
+```
+```
+(gdb) x/20wx $esp               # view 20 words starting from esp
+(gdb) delete 1                  # delete breakpoint
+(gdb) delete                    # delete all breakpoints
 ```
 
 ### C Stuff
