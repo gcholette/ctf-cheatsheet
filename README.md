@@ -92,6 +92,7 @@ os.system("/bin/bash")
 - [Lin Enum](https://github.com/rebootuser/LinEnum)
 - [Lin Peas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
 - [RustScan](https://github.com/RustScan/RustScan)
+- [pspy](https://github.com/DominicBreuker/pspy)
  
 ### Basic sudo escalation
 ```
