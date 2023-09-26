@@ -2,6 +2,12 @@
 
 ## Enum
 
+## Resources
+- [:alien: Revshells](https://www.revshells.com/)
+- [hacktricks](https://book.hacktricks.xyz/pentesting-web/web-vulnerabilities-methodology)
+- [prototype pollution](https://research.securitum.com/prototype-pollution-rce-kibana-cve-2019-7609/)
+
+  
 ### nmap
 ```shell
 nmap -sC -A -T4 <ip>
@@ -44,6 +50,4 @@ ls ./meow
     - SQL injections
     - SSRF
 
-## Reverse shells
 
-- [:alien: Revshells](https://www.revshells.com/)
